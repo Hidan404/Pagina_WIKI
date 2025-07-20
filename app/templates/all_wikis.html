@@ -1,1 +1,17 @@
 <!-- all_wikis.html -->
+{% extends 'base.html' %}
+{% block title %}Todas Wikis{% endblock %}
+{% block content %}
+  <h1>Todas as Wikis</h1>
+  <form method="GET" class="mb-3">
+    <input type="text" name="q" value="{{ search }}" placeholder="Pesquisar título">
+    <button type="submit" class="btn btn-primary btn-sm">Buscar</button>
+  </form>
+  {% for wiki in wikis %}
+    <div class="mb-4">
+      <h3><a href="{{ url_for('main.wiki_detail', wiki_id=wiki.id) }}">{{ wiki.title }}</a></h3>
+    </div>
+  {% else %}
+    <p>Nenhuma wiki encontrada.</p>
+  {% endfor %}
+{% endblock %}

@@ -1,1 +1,23 @@
 <!-- wiki_detail.html -->
+{% extends 'base.html' %}
+{% block title %}{{ wiki.title }}{% endblock %}
+{% block content %}
+  <h1>{{ wiki.title }}</h1>
+  <p>{{ wiki.content }}</p>
+  <hr>
+  <h4>Comentários</h4>
+  {% for comment in wiki.comments %}
+    <div class="mb-2">
+      <strong>{{ comment.author }}:</strong> {{ comment.text }}
+    </div>
+  {% else %}
+    <p>Sem comentários ainda.</p>
+  {% endfor %}
+  <hr>
+  <h5>Adicionar Comentário</h5>
+  <form method="POST">
+    <input type="text" name="author" placeholder="Seu nome" required class="form-control mb-2">
+    <textarea name="text" placeholder="Comentário" required class="form-control mb-2"></textarea>
+    <button type="submit" class="btn btn-success">Enviar</button>
+  </form>
+{% endblock %}

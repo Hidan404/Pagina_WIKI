@@ -1,1 +1,14 @@
 <!-- home.html -->
+{% extends 'base.html' %}
+{% block title %}Início{% endblock %}
+{% block content %}
+  <h1>Últimos Wikis</h1>
+  {% for wiki in wikis %}
+    <div class="mb-4">
+      <h3><a href="{{ url_for('main.wiki_detail', wiki_id=wiki.id) }}">{{ wiki.title }}</a></h3>
+      <p>{{ wiki.content[:150] }}...</p>
+    </div>
+  {% else %}
+    <p>Nenhuma wiki encontrada.</p>
+  {% endfor %}
+{% endblock %}
